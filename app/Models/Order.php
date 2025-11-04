@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $fillable = [
+        'id',
         'type',
         'table_no',
         'status',
-        'total_price',
+        'total_price'
     ];
 
     protected $casts = [

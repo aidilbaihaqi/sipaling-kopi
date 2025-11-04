@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->enum('type', ['dine_in', 'takeaway']);
             $table->string('table_no')->nullable();
             $table->enum('status', ['PENDING', 'IN_PROGRESS', 'READY', 'COMPLETED', 'CANCELED'])->default('PENDING');

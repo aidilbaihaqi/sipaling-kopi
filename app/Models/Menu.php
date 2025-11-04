@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $fillable = [
+        'id',
         'name',
         'category_id',
         'price',
         'is_available',
-        'stock',
+        'stock'
     ];
 
     protected $casts = [

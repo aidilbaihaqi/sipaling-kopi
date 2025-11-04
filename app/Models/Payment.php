@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $fillable = [
+        'id',
         'order_id',
         'amount',
         'payment_method',
-        'requestId',
+        'requestId'
     ];
 
     protected $casts = [

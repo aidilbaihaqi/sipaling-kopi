@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\MenuController;
+use App\Http\Controllers\Api\V1\OrderController;
+use App\Http\Controllers\Api\V1\OrderItemController;
+use App\Http\Controllers\Api\V1\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +23,11 @@ Route::get('/kitchen', function () {
 Route::get('/cashier', function () {
     return response()->json(['message' => 'Welcome, Cashier!']);
 })->middleware(['auth:sanctum', 'role:cashier']);
+
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function () {
+    Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('menus', MenuController::class);
+    Route::apiResource('orders', OrderController::class);
+    Route::apiResource('order-items', OrderItemController::class);
+    Route::apiResource('payments', PaymentController::class);
+});

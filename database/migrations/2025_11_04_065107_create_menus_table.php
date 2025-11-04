@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('menus', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->uuid('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->decimal('price', 10, 2);
             $table->boolean('is_available')->default(true);
             $table->integer('stock')->default(0);
