@@ -9,10 +9,6 @@ use App\Http\Controllers\Api\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
 Route::get('/admin', [TestController::class, 'admin'])->middleware(['auth:sanctum', 'role:admin']);
 Route::get('/kitchen', [TestController::class, 'kitchen'])->middleware(['auth:sanctum', 'role:kitchen_manager']);
 Route::get('/cashier', [TestController::class, 'cashier'])->middleware(['auth:sanctum', 'role:cashier']);

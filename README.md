@@ -9,47 +9,44 @@ A Laravel-based REST API for a coffee shop management system.
 - Order management
 - Order item management
 - Payment management
+- Role-Based Access Control (Admin, Kitchen Manager, Cashier)
+
+## API Documentation
+
+The complete API documentation is available via Swagger UI. Once you have the application running, you can access it at:
+
+[http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
+
+The documentation provides detailed information about all available endpoints, including parameters, request bodies, and response schemas.
+
+## Authentication
+
+The API uses two authentication methods:
+
+1.  **Laravel Sanctum**: For user authentication, a bearer token must be included in the `Authorization` header.
+2.  **API Key**: For application-level access, an API key must be provided in the `X-API-KEY` header.
+
+## Role-Based Access Control (RBAC)
+
+The API implements role-based access control to restrict access to certain endpoints based on user roles. The available roles are:
+
+- **Admin**: Full access to all resources.
+- **Kitchen Manager**: Access to kitchen-related resources.
+- **Cashier**: Access to cashier-related resources.
+
+Specific role-based endpoints are available for testing:
+
+- `GET /api/v1/admin`: Accessible only by users with the "admin" role.
+- `GET /api/v1/kitchen`: Accessible only by users with the "kitchen" role.
+- `GET /api/v1/cashier`: Accessible only by users with the "cashier" role.
 
 ## API Endpoints
 
-### Categories
-- `GET /api/v1/categories` - Get all categories
-- `POST /api/v1/categories` - Create a new category
-- `GET /api/v1/categories/{id}` - Get a specific category
-- `PUT /api/v1/categories/{id}` - Update a category
-- `DELETE /api/v1/categories/{id}` - Delete a category
-
-### Menus
-- `GET /api/v1/menus` - Get all menus
-- `POST /api/v1/menus` - Create a new menu
-- `GET /api/v1/menus/{id}` - Get a specific menu
-- `PUT /api/v1/menus/{id}` - Update a menu
-- `DELETE /api/v1/menus/{id}` - Delete a menu
-
-### Orders
-- `GET /api/v1/orders` - Get all orders
-- `POST /api/v1/orders` - Create a new order
-- `GET /api/v1/orders/{id}` - Get a specific order
-- `PUT /api/v1/orders/{id}` - Update an order
-- `DELETE /api/v1/orders/{id}` - Delete an order
-
-### Order Items
-- `GET /api/v1/order-items` - Get all order items
-- `POST /api/v1/order-items` - Create a new order item
-- `GET /api/v1/order-items/{id}` - Get a specific order item
-- `PUT /api/v1/order-items/{id}` - Update an order item
-- `DELETE /api/v1/order-items/{id}` - Delete an order item
-
-### Payments
-- `GET /api/v1/payments` - Get all payments
-- `POST /api/v1/payments` - Create a new payment
-- `GET /api/v1/payments/{id}` - Get a specific payment
-- `PUT /api/v1/payments/{id}` - Update a payment
-- `DELETE /api/v1/payments/{id}` - Delete a payment
+For a complete and detailed list of all API endpoints, please refer to the [Swagger Documentation](#api-documentation). The base URL for the API is `http://localhost:8000/api/v1/`.
 
 ## Testing the API
 
-You can test the API using tools like Postman, Insomnia, or curl. The API is available at `http://localhost:8000/api/v1/`.
+You can test the API using tools like Postman, Insomnia, or by interacting with the Swagger UI.
 
 ## Response Format
 
