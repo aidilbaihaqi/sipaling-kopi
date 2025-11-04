@@ -19,11 +19,11 @@ class OrderItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'order_id' => 'required|exists:orders,id',
-            'menu_id' => 'required|exists:menus,id',
-            'quantity' => 'required|integer',
-            'price' => 'required|numeric',
-            'status' => 'required|in:PENDING,IN_PROGRESS,READY',
+            'order_id' => 'sometimes|required|exists:orders,id',
+            'menu_id' => 'sometimes|required|exists:menus,id',
+            'quantity' => 'sometimes|required|integer',
+            'price' => 'sometimes|required|numeric',
+            'status' => 'sometimes|required|in:PENDING,IN_PROGRESS,READY',
         ]);
 
         $orderItem = OrderItem::create($request->all());
@@ -45,11 +45,11 @@ class OrderItemController extends Controller
     public function update(Request $request, OrderItem $orderItem)
     {
         $request->validate([
-            'order_id' => 'required|exists:orders,id',
-            'menu_id' => 'required|exists:menus,id',
-            'quantity' => 'required|integer',
-            'price' => 'required|numeric',
-            'status' => 'required|in:PENDING,IN_PROGRESS,READY',
+            'order_id' => 'sometimes|required|exists:orders,id',
+            'menu_id' => 'sometimes|required|exists:menus,id',
+            'quantity' => 'sometimes|required|integer',
+            'price' => 'sometimes|required|numeric',
+            'status' => 'sometimes|required|in:PENDING,IN_PROGRESS,READY',
         ]);
 
         $orderItem->update($request->all());

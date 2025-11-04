@@ -1,0 +1,834 @@
+
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Sipaling Kopi API",
+    "description": "API documentation for the Sipaling Kopi application.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api/v1",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/categories": {
+      "get": {
+        "summary": "Get all categories",
+        "responses": {
+          "200": {
+            "description": "A list of categories.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new category",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Category created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "summary": "Get a specific category",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The category.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a category",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Category updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a category",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Category deleted successfully."
+          }
+        }
+      }
+    },
+    "/menus": {
+        "get": {
+            "summary": "Get all menus",
+            "responses": {
+                "200": {
+                    "description": "A list of menus.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Menu"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "summary": "Create a new menu",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/MenuInput"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Menu created successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Menu"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/menus/{id}": {
+        "get": {
+            "summary": "Get a specific menu",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "The menu.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Menu"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "put": {
+            "summary": "Update a menu",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/MenuInput"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Menu updated successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Menu"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary": "Delete a menu",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "Menu deleted successfully."
+                }
+            }
+        }
+    },
+    "/orders": {
+        "get": {
+            "summary": "Get all orders",
+            "responses": {
+                "200": {
+                    "description": "A list of orders.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Order"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "summary": "Create a new order",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/OrderInput"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Order created successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Order"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/orders/{id}": {
+        "get": {
+            "summary": "Get a specific order",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "The order.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Order"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "put": {
+            "summary": "Update an order",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/OrderInput"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Order updated successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Order"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary": "Delete an order",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "Order deleted successfully."
+                }
+            }
+        }
+    },
+    "/order-items": {
+        "get": {
+            "summary": "Get all order items",
+            "responses": {
+                "200": {
+                    "description": "A list of order items.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/OrderItem"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "summary": "Create a new order item",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/OrderItemInput"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Order item created successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderItem"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/order-items/{id}": {
+        "get": {
+            "summary": "Get a specific order item",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "The order item.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderItem"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "put": {
+            "summary": "Update an order item",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/OrderItemInput"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Order item updated successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderItem"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary": "Delete an order item",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "Order item deleted successfully."
+                }
+            }
+        }
+    },
+    "/payments": {
+        "get": {
+            "summary": "Get all payments",
+            "responses": {
+                "200": {
+                    "description": "A list of payments.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Payment"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "summary": "Create a new payment",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/PaymentInput"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Payment created successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Payment"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/payments/{id}": {
+        "get": {
+            "summary": "Get a specific payment",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "The payment.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Payment"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "put": {
+            "summary": "Update a payment",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/PaymentInput"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Payment updated successfully.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Payment"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "delete": {
+            "summary": "Delete a payment",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "Payment deleted successfully."
+                }
+            }
+        }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CategoryInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Menu": {
+          "type": "object",
+          "properties": {
+              "id": {
+                  "type": "integer"
+              },
+              "name": {
+                  "type": "string"
+              },
+              "category_id": {
+                  "type": "integer"
+              },
+              "price": {
+                  "type": "number",
+                  "format": "decimal"
+              },
+              "is_available": {
+                  "type": "boolean"
+              },
+              "stock": {
+                  "type": "integer"
+              }
+          }
+      },
+      "MenuInput": {
+          "type": "object",
+          "properties": {
+              "name": {
+                  "type": "string"
+              },
+              "category_id": {
+                  "type": "integer"
+              },
+              "price": {
+                  "type": "number"
+              },
+              "is_available": {
+                  "type": "boolean"
+              },
+              "stock": {
+                  "type": "integer"
+              }
+          }
+      },
+      "Order": {
+          "type": "object",
+          "properties": {
+              "id": {
+                  "type": "integer"
+              },
+              "type": {
+                  "type": "string",
+                  "enum": ["dine_in", "takeaway"]
+              },
+              "table_no": {
+                  "type": "integer",
+                  "nullable": true
+              },
+              "status": {
+                  "type": "string",
+                  "enum": ["PENDING", "COMPLETED", "CANCELLED"]
+              },
+              "total_price": {
+                  "type": "number",
+                  "format": "decimal"
+              }
+          }
+      },
+      "OrderInput": {
+          "type": "object",
+          "properties": {
+              "type": {
+                  "type": "string",
+                  "enum": ["dine_in", "takeaway"]
+              },
+              "table_no": {
+                  "type": "integer",
+                  "nullable": true
+              },
+              "status": {
+                  "type": "string",
+                  "enum": ["PENDING", "COMPLETED", "CANCELLED"]
+              },
+              "total_price": {
+                  "type": "number"
+              }
+          }
+      },
+      "OrderItem": {
+          "type": "object",
+          "properties": {
+              "id": {
+                  "type": "integer"
+              },
+              "order_id": {
+                  "type": "integer"
+              },
+              "menu_id": {
+                  "type": "integer"
+              },
+              "quantity": {
+                  "type": "integer"
+              },
+              "price": {
+                  "type": "number",
+                  "format": "decimal"
+              },
+              "status": {
+                  "type": "string",
+                  "enum": ["PENDING", "READY", "SERVED"]
+              }
+          }
+      },
+      "OrderItemInput": {
+          "type": "object",
+          "properties": {
+              "order_id": {
+                  "type": "integer"
+              },
+              "menu_id": {
+                  "type": "integer"
+              },
+              "quantity": {
+                  "type": "integer"
+              },
+              "price": {
+                  "type": "number"
+              },
+              "status": {
+                  "type": "string",
+                  "enum": ["PENDING", "READY", "SERVED"]
+              }
+          }
+      },
+      "Payment": {
+          "type": "object",
+          "properties": {
+              "id": {
+                  "type": "integer"
+              },
+              "order_id": {
+                  "type": "integer"
+              },
+              "payment_method": {
+                  "type": "string",
+                  "enum": ["cash", "credit_card"]
+              },
+              "status": {
+                  "type": "string",
+                  "enum": ["PENDING", "PAID", "FAILED"]
+              }
+          }
+      },
+      "PaymentInput": {
+          "type": "object",
+          "properties": {
+              "order_id": {
+                  "type": "integer"
+              },
+              "payment_method": {
+                  "type": "string",
+                  "enum": ["cash", "credit_card"]
+              },
+              "status": {
+                  "type": "string",
+                  "enum": ["PENDING", "PAID", "FAILED"]
+              }
+          }
+      }
+    }
+  }
+}

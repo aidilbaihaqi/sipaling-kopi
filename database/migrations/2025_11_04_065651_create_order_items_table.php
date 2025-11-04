@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('menu_id');
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
             $table->integer('quantity');
+            $table->decimal('price', 8, 2);
             $table->enum('status', ['PENDING', 'IN_PROGRESS', 'READY', 'COMPLETED'])->default('PENDING');
             $table->timestamps();
         });

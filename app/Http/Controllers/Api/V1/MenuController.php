@@ -45,11 +45,11 @@ class MenuController extends Controller
     public function update(Request $request, Menu $menu)
     {
         $request->validate([
-            'name' => 'required|unique:menus,name,' . $menu->id . '|max:255',
-            'category_id' => 'required|exists:categories,id',
-            'price' => 'required|numeric',
-            'is_available' => 'required|boolean',
-            'stock' => 'required|integer',
+            'name' => 'sometimes|required|unique:menus,name,' . $menu->id . '|max:255',
+            'category_id' => 'sometimes|required|exists:categories,id',
+            'price' => 'sometimes|required|numeric',
+            'is_available' => 'sometimes|required|boolean',
+            'stock' => 'sometimes|required|integer',
         ]);
 
         $menu->update($request->all());

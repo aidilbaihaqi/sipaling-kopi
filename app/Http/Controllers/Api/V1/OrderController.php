@@ -19,10 +19,10 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required|in:dine_in,takeaway',
-            'table_no' => 'nullable|integer',
-            'status' => 'required|in:PENDING,IN_PROGRESS,COMPLETED',
-            'total_price' => 'required|numeric',
+            'type' => 'sometimes|required|in:dine_in,takeaway',
+            'table_no' => 'sometimes|nullable|integer',
+            'status' => 'sometimes|required|in:PENDING,IN_PROGRESS,COMPLETED',
+            'total_price' => 'sometimes|required|numeric',
         ]);
 
         $order = Order::create($request->all());
@@ -44,10 +44,10 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $request->validate([
-            'type' => 'required|in:dine_in,takeaway',
-            'table_no' => 'nullable|integer',
-            'status' => 'required|in:PENDING,IN_PROGRESS,COMPLETED',
-            'total_price' => 'required|numeric',
+            'type' => 'sometimes|required|in:dine_in,takeaway',
+            'table_no' => 'sometimes|nullable|integer',
+            'status' => 'sometimes|required|in:PENDING,IN_PROGRESS,COMPLETED',
+            'total_price' => 'sometimes|required|numeric',
         ]);
 
         $order->update($request->all());
