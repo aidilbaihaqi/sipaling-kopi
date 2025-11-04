@@ -15,8 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->decimal('amount', 10, 2);
             $table->string('payment_method');
             $table->string('status');
+            $table->string('requestId')->nullable();
             $table->timestamps();
         });
     }

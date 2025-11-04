@@ -4,17 +4,168 @@
   "info": {
     "title": "Sipaling Kopi API",
     "description": "API documentation for the Sipaling Kopi application.",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "contact": {
+      "email": "aidilbaihaqi8@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
   },
   "servers": [
     {
-      "url": "http://localhost:8000/api/v1",
+      "url": "http://localhost:8000/api",
       "description": "Local development server"
     }
   ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Endpoints for user authentication and authorization."
+    },
+    {
+      "name": "Categories",
+      "description": "Endpoints for managing menu categories."
+    },
+    {
+      "name": "Menus",
+      "description": "Endpoints for managing menus."
+    },
+    {
+      "name": "Orders",
+      "description": "Endpoints for managing orders."
+    },
+    {
+      "name": "Order Items",
+      "description": "Endpoints for managing items within an order."
+    },
+    {
+      "name": "Payments",
+      "description": "Endpoints for managing payments."
+    }
+  ],
   "paths": {
-    "/categories": {
+    "/admin": {
       "get": {
+        "tags": ["Authentication"],
+        "summary": "Admin-only endpoint",
+        "description": "An endpoint that can only be accessed by users with the 'admin' role.",
+        "security": [
+          {
+            "sanctum": []
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Admin access granted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/kitchen": {
+      "get": {
+        "tags": ["Authentication"],
+        "summary": "Kitchen Manager-only endpoint",
+        "description": "An endpoint that can only be accessed by users with the 'kitchen_manager' role.",
+        "security": [
+          {
+            "sanctum": []
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Kitchen manager access granted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/cashier": {
+      "get": {
+        "tags": ["Authentication"],
+        "summary": "Cashier-only endpoint",
+        "description": "An endpoint that can only be accessed by users with the 'cashier' role.",
+        "security": [
+          {
+            "sanctum": []
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Cashier access granted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/categories": {
+      "get": {
+        "tags": ["Categories"],
         "summary": "Get all categories",
         "responses": {
           "200": {
@@ -33,6 +184,7 @@
         }
       },
       "post": {
+        "tags": ["Categories"],
         "summary": "Create a new category",
         "requestBody": {
           "required": true,
@@ -58,8 +210,9 @@
         }
       }
     },
-    "/categories/{id}": {
+    "/v1/categories/{id}": {
       "get": {
+        "tags": ["Categories"],
         "summary": "Get a specific category",
         "parameters": [
           {
@@ -85,6 +238,7 @@
         }
       },
       "put": {
+        "tags": ["Categories"],
         "summary": "Update a category",
         "parameters": [
           {
@@ -120,6 +274,7 @@
         }
       },
       "delete": {
+        "tags": ["Categories"],
         "summary": "Delete a category",
         "parameters": [
           {
@@ -138,8 +293,9 @@
         }
       }
     },
-    "/menus": {
+    "/v1/menus": {
         "get": {
+            "tags": ["Menus"],
             "summary": "Get all menus",
             "responses": {
                 "200": {
@@ -158,6 +314,7 @@
             }
         },
         "post": {
+            "tags": ["Menus"],
             "summary": "Create a new menu",
             "requestBody": {
                 "required": true,
@@ -183,8 +340,9 @@
             }
         }
     },
-    "/menus/{id}": {
+    "/v1/menus/{id}": {
         "get": {
+            "tags": ["Menus"],
             "summary": "Get a specific menu",
             "parameters": [
                 {
@@ -210,6 +368,7 @@
             }
         },
         "put": {
+            "tags": ["Menus"],
             "summary": "Update a menu",
             "parameters": [
                 {
@@ -245,6 +404,7 @@
             }
         },
         "delete": {
+            "tags": ["Menus"],
             "summary": "Delete a menu",
             "parameters": [
                 {
@@ -263,8 +423,9 @@
             }
         }
     },
-    "/orders": {
+    "/v1/orders": {
         "get": {
+            "tags": ["Orders"],
             "summary": "Get all orders",
             "responses": {
                 "200": {
@@ -283,6 +444,7 @@
             }
         },
         "post": {
+            "tags": ["Orders"],
             "summary": "Create a new order",
             "requestBody": {
                 "required": true,
@@ -308,8 +470,9 @@
             }
         }
     },
-    "/orders/{id}": {
+    "/v1/orders/{id}": {
         "get": {
+            "tags": ["Orders"],
             "summary": "Get a specific order",
             "parameters": [
                 {
@@ -335,6 +498,7 @@
             }
         },
         "put": {
+            "tags": ["Orders"],
             "summary": "Update an order",
             "parameters": [
                 {
@@ -370,6 +534,7 @@
             }
         },
         "delete": {
+            "tags": ["Orders"],
             "summary": "Delete an order",
             "parameters": [
                 {
@@ -388,8 +553,9 @@
             }
         }
     },
-    "/order-items": {
+    "/v1/order-items": {
         "get": {
+            "tags": ["Order Items"],
             "summary": "Get all order items",
             "responses": {
                 "200": {
@@ -408,6 +574,7 @@
             }
         },
         "post": {
+            "tags": ["Order Items"],
             "summary": "Create a new order item",
             "requestBody": {
                 "required": true,
@@ -433,8 +600,9 @@
             }
         }
     },
-    "/order-items/{id}": {
+    "/v1/order-items/{id}": {
         "get": {
+            "tags": ["Order Items"],
             "summary": "Get a specific order item",
             "parameters": [
                 {
@@ -460,6 +628,7 @@
             }
         },
         "put": {
+            "tags": ["Order Items"],
             "summary": "Update an order item",
             "parameters": [
                 {
@@ -495,6 +664,7 @@
             }
         },
         "delete": {
+            "tags": ["Order Items"],
             "summary": "Delete an order item",
             "parameters": [
                 {
@@ -513,8 +683,9 @@
             }
         }
     },
-    "/payments": {
+    "/v1/payments": {
         "get": {
+            "tags": ["Payments"],
             "summary": "Get all payments",
             "responses": {
                 "200": {
@@ -533,6 +704,7 @@
             }
         },
         "post": {
+            "tags": ["Payments"],
             "summary": "Create a new payment",
             "requestBody": {
                 "required": true,
@@ -558,8 +730,9 @@
             }
         }
     },
-    "/payments/{id}": {
+    "/v1/payments/{id}": {
         "get": {
+            "tags": ["Payments"],
             "summary": "Get a specific payment",
             "parameters": [
                 {
@@ -585,6 +758,7 @@
             }
         },
         "put": {
+            "tags": ["Payments"],
             "summary": "Update a payment",
             "parameters": [
                 {
@@ -620,6 +794,7 @@
             }
         },
         "delete": {
+            "tags": ["Payments"],
             "summary": "Delete a payment",
             "parameters": [
                 {
@@ -766,10 +941,6 @@
               "price": {
                   "type": "number",
                   "format": "decimal"
-              },
-              "status": {
-                  "type": "string",
-                  "enum": ["PENDING", "READY", "SERVED"]
               }
           }
       },
@@ -787,10 +958,6 @@
               },
               "price": {
                   "type": "number"
-              },
-              "status": {
-                  "type": "string",
-                  "enum": ["PENDING", "READY", "SERVED"]
               }
           }
       },
@@ -805,11 +972,11 @@
               },
               "payment_method": {
                   "type": "string",
-                  "enum": ["cash", "credit_card"]
+                  "enum": ["CASH", "CREDIT_CARD", "DEBIT_CARD", "E_WALLET"]
               },
               "status": {
                   "type": "string",
-                  "enum": ["PENDING", "PAID", "FAILED"]
+                  "enum": ["PAID", "UNPAID"]
               }
           }
       },
@@ -821,13 +988,26 @@
               },
               "payment_method": {
                   "type": "string",
-                  "enum": ["cash", "credit_card"]
+                  "enum": ["CASH", "CREDIT_CARD", "DEBIT_CARD", "E_WALLET"]
               },
               "status": {
                   "type": "string",
-                  "enum": ["PENDING", "PAID", "FAILED"]
+                  "enum": ["PAID", "UNPAID"]
               }
           }
+      }
+    },
+    "securitySchemes": {
+      "sanctum": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Laravel Sanctum authentication"
+      },
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
       }
     }
   }

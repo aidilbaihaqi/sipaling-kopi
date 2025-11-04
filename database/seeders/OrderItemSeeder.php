@@ -29,6 +29,7 @@ class OrderItemSeeder extends Seeder
                 'order_id' => $pendingOrder->id,
                 'menu_id' => $espresso->id,
                 'quantity' => 1,
+                'price' => 15000,
                 'status' => 'PENDING',
             ],
             [
@@ -36,6 +37,7 @@ class OrderItemSeeder extends Seeder
                 'order_id' => $inProgressOrder->id,
                 'menu_id' => $latte->id,
                 'quantity' => 2,
+                'price' => 25000,
                 'status' => 'IN_PROGRESS',
             ],
             [
@@ -43,6 +45,7 @@ class OrderItemSeeder extends Seeder
                 'order_id' => $completedOrder->id,
                 'menu_id' => $iceTea->id,
                 'quantity' => 1,
+                'price' => 12000,
                 'status' => 'COMPLETED',
             ],
         ];

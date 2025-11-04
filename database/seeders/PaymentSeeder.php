@@ -22,6 +22,7 @@ class PaymentSeeder extends Seeder
                 'order_id' => $completedOrder->id,
                 'amount' => 35000,
                 'payment_method' => 'CASH',
+                'status' => 'PAID',
                 'requestId' => (string) Str::uuid(),
             ]);
         }

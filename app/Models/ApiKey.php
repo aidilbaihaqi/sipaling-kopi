@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ApiKey extends Model
 {
     use HasFactory;
-    protected $fillable = ['api_key', 'app_name', 'status'];
+    protected $fillable = ['api_key', 'app_name', 'status', 'permission'];
 }

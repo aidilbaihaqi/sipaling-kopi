@@ -1,0 +1,136 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sipaling Kopi API",
+        "description": "API for Sipaling Kopi",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/admin": {
+            "get": {
+                "tags": [
+                    "RBAC"
+                ],
+                "summary": "Admin test route",
+                "operationId": "64bde9cfef929234aa9d1c8859378773",
+                "responses": {
+                    "200": {
+                        "description": "Welcome, Admin!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/kitchen": {
+            "get": {
+                "tags": [
+                    "RBAC"
+                ],
+                "summary": "Kitchen manager test route",
+                "operationId": "5262586d58ded57b1b5c615f14574742",
+                "responses": {
+                    "200": {
+                        "description": "Welcome, Kitchen Manager!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/cashier": {
+            "get": {
+                "tags": [
+                    "RBAC"
+                ],
+                "summary": "Cashier test route",
+                "operationId": "e1f304809c633207b43d05c78a18c672",
+                "responses": {
+                    "200": {
+                        "description": "Welcome, Cashier!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "name": "X-API-KEY",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "RBAC",
+            "description": "RBAC"
+        }
+    ]
+}
