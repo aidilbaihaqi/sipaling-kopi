@@ -64,8 +64,8 @@ This is a comprehensive Cafe Management System designed to streamline cafe opera
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/cafe-management-system.git
-    cd cafe-management-system
+    git clone https://github.com/aidilbaihaqi/sipaling-kopi
+    cd sipaling-kopi
     ```
 2.  **Install dependencies**:
     ```bash
@@ -88,7 +88,7 @@ This is a comprehensive Cafe Management System designed to streamline cafe opera
     ```
 7.  **Start the development server**:
     ```bash
-    php artisan serve
+    composer run dev
     ```
 
 ## License
