@@ -13,7 +13,7 @@ class ApiKeyTest extends TestCase
     /** @test */
     public function it_returns_an_error_if_api_key_is_missing()
     {
-        $response = $this->getJson('/api/v1/test');
+        $response = $this->getJson('/api/v1/test-api-key');
 
         $response->assertStatus(401)
             ->assertJson([
@@ -26,7 +26,7 @@ class ApiKeyTest extends TestCase
     {
         $response = $this->withHeaders([
             'X-API-KEY' => 'invalid-api-key',
-        ])->getJson('/api/v1/test');
+        ])->getJson('/api/v1/test-api-key');
 
         $response->assertStatus(401)
             ->assertJson([
@@ -43,7 +43,7 @@ class ApiKeyTest extends TestCase
 
         $response = $this->withHeaders([
             'X-API-KEY' => $apiKey->api_key,
-        ])->getJson('/api/v1/test');
+        ])->getJson('/api/v1/test-api-key');
 
         $response->assertStatus(401)
             ->assertJson([
@@ -58,11 +58,11 @@ class ApiKeyTest extends TestCase
 
         $response = $this->withHeaders([
             'X-API-KEY' => $apiKey->api_key,
-        ])->getJson('/api/v1/test');
+        ])->getJson('/api/v1/test-api-key');
 
         $response->assertStatus(200)
             ->assertJson([
                 'message' => 'API key is valid',
             ]);
     }
-}
+}

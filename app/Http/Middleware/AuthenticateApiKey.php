@@ -5,11 +5,16 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Models\ApiKey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticateApiKey
 {
     public function handle(Request $request, Closure $next)
     {
+        if (Auth::guard('sanctum')->check()) {
+            return $next($request);
+        }
+
         $apiKey = $request->header('X-API-KEY');
         if (!$apiKey) {
             return response()->json(['message' => 'API key is missing.'], 401);

@@ -33,7 +33,7 @@ class RBACTest extends TestCase
             'X-API-KEY' => $this->apiKey->api_key,
         ])->getJson('/api/v1/admin/test')
             ->assertStatus(200)
-            ->assertJson(['message' => 'Admin access granted']);
+            ->assertJson(['message' => 'Welcome, Admin!']);
     }
 
     /**
@@ -77,7 +77,7 @@ class RBACTest extends TestCase
             'X-API-KEY' => $this->apiKey->api_key,
         ])->getJson('/api/v1/kitchen/test')
             ->assertStatus(200)
-            ->assertJson(['message' => 'Kitchen manager access granted']);
+            ->assertJson(['message' => 'Welcome, Kitchen Manager!']);
     }
 
     /**

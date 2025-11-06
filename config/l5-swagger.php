@@ -41,11 +41,13 @@ return [
                 'format_to_use_for_docs' => env('L5_FORMAT_TO_USE_FOR_DOCS', 'json'),
 
                 /*
-                 * Absolute paths to directory containing the swagger annotations are stored.
-                 */
-                'annotations' => [
-                    base_path('app'),
-                ],
+             * Absolute paths to directory(-ies) containing your annotations.
+             * E.g. 'annotations' => [ app_path('Http/Controllers') ],
+             */
+            'annotations' => [
+                app_path('Http/Swagger/Swagger.php'),
+                app_path('Http/Controllers/Api'),
+            ],
             ],
         ],
     ],

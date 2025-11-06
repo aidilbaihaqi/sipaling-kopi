@@ -18,7 +18,7 @@ class RoleAuthorizationTest extends TestCase
 
         Sanctum::actingAs($admin);
 
-        $response = $this->getJson('/api/admin');
+        $response = $this->getJson('/api/v1/admin/test');
 
         $response->assertStatus(200);
         $response->assertJson(['message' => 'Welcome, Admin!']);
@@ -31,7 +31,7 @@ class RoleAuthorizationTest extends TestCase
 
         Sanctum::actingAs($cashier);
 
-        $response = $this->getJson('/api/admin');
+        $response = $this->getJson('/api/v1/admin/test');
 
         $response->assertStatus(403);
     }
@@ -43,7 +43,7 @@ class RoleAuthorizationTest extends TestCase
 
         Sanctum::actingAs($kitchenManager);
 
-        $response = $this->getJson('/api/kitchen');
+        $response = $this->getJson('/api/v1/kitchen/test');
 
         $response->assertStatus(200);
         $response->assertJson(['message' => 'Welcome, Kitchen Manager!']);
@@ -56,7 +56,7 @@ class RoleAuthorizationTest extends TestCase
 
         Sanctum::actingAs($cashier);
 
-        $response = $this->getJson('/api/cashier');
+        $response = $this->getJson('/api/v1/cashier/test');
 
         $response->assertStatus(200);
         $response->assertJson(['message' => 'Welcome, Cashier!']);
@@ -65,7 +65,7 @@ class RoleAuthorizationTest extends TestCase
     /** @test */
     public function a_guest_cannot_access_any_protected_route()
     {
-        $response = $this->getJson('/api/admin');
+        $response = $this->getJson('/api/v1/admin/test');
 
         $response->assertStatus(401);
     }
