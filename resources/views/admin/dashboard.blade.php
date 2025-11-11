@@ -44,7 +44,7 @@
     <!-- Grafik Penjualan -->
     <div class="bg-white rounded-lg shadow p-6">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Grafik Penjualan 7 Hari Terakhir</h3>
-        <canvas id="salesChart" height="80"></canvas>
+        <canvas id="salesChart" height="80" data-sales='@json($salesChart ?? [])'></canvas>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -96,11 +96,14 @@
     </div>
 </div>
 
+@push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const salesData = @json($salesChart);
+    const chartElement = document.getElementById('salesChart');
+    const salesData = JSON.parse(chartElement.dataset.sales || '[]');
+    
     if (salesData && salesData.length > 0) {
-        const ctx = document.getElementById('salesChart').getContext('2d');
+        const ctx = chartElement.getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
@@ -116,11 +119,18 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             options: {
                 responsive: true,
-                plugins: { legend: { display: true, position: 'top' } },
+                plugins: { 
+                    legend: { 
+                        display: true, 
+                        position: 'top' 
+                    } 
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { callback: value => 'Rp ' + value.toLocaleString('id-ID') }
+                        ticks: { 
+                            callback: value => 'Rp ' + value.toLocaleString('id-ID')
+                        }
                     }
                 }
             }
@@ -128,4 +138,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+@endpush
 @endsection
