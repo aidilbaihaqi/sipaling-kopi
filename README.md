@@ -78,18 +78,32 @@ This is a comprehensive Cafe Management System designed to streamline cafe opera
     php artisan key:generate
     ```
 4.  **Configure your database** in the `.env` file.
-5.  **Run migrations**:
+5.  **Run migrations and seed**:
     ```bash
-    php artisan migrate
+    php artisan migrate --seed
     ```
-6.  **Seed the database** (optional):
+6.  **Start the development server**:
+    
+    Open 2 terminals:
+    
+    **Terminal 1 - Laravel Server:**
     ```bash
-    php artisan db:seed
+    php artisan serve
     ```
-7.  **Start the development server**:
+    
+    **Terminal 2 - Vite Dev Server:**
     ```bash
-    composer run dev
+    npm run dev
     ```
+
+## Admin Login Credentials
+
+After running the seeder, you can access the admin panel at `http://localhost:8000/login` with the following credentials:
+
+- **Email**: `admin@sipalingkopi.com`
+- **Password**: `GakNgopiGakGacor123`
+
+For detailed admin panel documentation, see [ADMIN_README.md](ADMIN_README.md)
 
 ## License
 
