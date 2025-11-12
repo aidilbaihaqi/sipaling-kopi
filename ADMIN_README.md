@@ -4,7 +4,6 @@
 
 **Email:** admin@sipalingkopi.com  
 **Password:** GakNgopiGakGacor123
-
 ---
 
 ## 🚀 Cara Menjalankan Aplikasi

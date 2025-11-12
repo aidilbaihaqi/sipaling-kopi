@@ -15,13 +15,31 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin/dashboard');
+
+            $user = Auth::user();
+
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended(route('admin.dashboard'));
+
+                case 'cashier':
+                    return redirect()->intended(route('cashier.index'));
+
+                case 'kitchen':
+                    return redirect()->intended(route('kitchen.index'));
+
+                default:
+                    Auth::logout(); 
+                    return redirect('/login')->withErrors([
+                        'email' => 'Akses tidak dikenali.',
+                    ]);
+            }
         }
 
         return back()->withErrors([
@@ -32,8 +50,10 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/login');
     }
 }

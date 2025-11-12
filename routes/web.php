@@ -2,28 +2,63 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+// Namespace Admin
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReportController;
+// Namespace Kitchen
+use App\Http\Controllers\KitchenController;
 
+// --- 1. PUBLIC ROUTES ---
 Route::get('/', function () {
     return redirect('/login');
 });
 
-// Auth Routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Admin Routes (Protected)
-Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    
-    Route::resource('menus', MenuController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('users', UserController::class);
-    
-    Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports');
+// --- 2. PROTECTED ROUTES (Memerlukan Login) ---
+Route::middleware(['auth'])->group(function () {
+
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // ======================================================
+    // 🔹 A. ROUTE DAPUR (Kitchen Manager)
+    // ======================================================
+
+    Route::get('/kitchen', [KitchenController::class, 'index'])
+        ->name('kitchen.index');
+
+    Route::post('/kitchen/order/{order}/update-status', [KitchenController::class, 'updateStatus'])
+        ->name('kitchen.updateStatus');
+
+    Route::get('/kitchen/stock', [KitchenController::class, 'stock'])
+        ->name('kitchen.stock');
+
+    Route::post('/kitchen/stock/{menu}/toggle', [KitchenController::class, 'toggleMenuAvailability'])
+        ->name('kitchen.toggleMenu');
+
+    Route::post('/kitchen/stock/{menu}/update-stock', [KitchenController::class, 'updateStock'])
+        ->name('kitchen.updateStock');
+
+    // ======================================================
+    // 🔹 C. ADMIN ROUTES (Menggunakan prefix '/admin')
+    // ======================================================
+    Route::prefix('admin')->group(function () {
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('admin.dashboard');
+
+        // 🔸 Resource Routes
+        Route::resource('menus', MenuController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('users', UserController::class);
+
+        // 🔸 Custom Report
+        Route::get('/reports', [ReportController::class, 'index'])
+            ->name('admin.reports');
+    });
 });
