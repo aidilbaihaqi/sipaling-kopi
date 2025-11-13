@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReportController;
 // Namespace Kitchen
-use App\Http\Controllers\KitchenController;
+use App\Http\Controllers\Kitchen\KitchenController;
 
 // --- 1. PUBLIC ROUTES ---
 Route::get('/', function () {

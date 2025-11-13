@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Kitchen;
 
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Menu;
 use Illuminate\Http\Request;
@@ -95,9 +96,7 @@ class KitchenController extends Controller
         ]);
 
         $menu->stock = $request->stock;
-
         $menu->is_available = $menu->stock > 0;
-
         $menu->save();
 
         return redirect()->back()->with('success', "Stok menu '{$menu->name}' berhasil diperbarui!");

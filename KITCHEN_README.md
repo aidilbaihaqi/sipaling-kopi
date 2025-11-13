@@ -71,7 +71,7 @@ npm run dev
 
 ```
 app/Http/Controllers/
-└── KitchenController.php         # Controller untuk antrian & stok dapur
+└── Kitchen/KitchenController.php         # Controller untuk antrian & stok dapur
 
 resources/views/kitchen/
 ├── index.blade.php               # View antrian pesanan
