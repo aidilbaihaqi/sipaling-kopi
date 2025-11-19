@@ -1,7 +1,3 @@
-Sip! Ini versi yang sudah rapi dan siap kamu salin langsung ya:
-
----
-
 # 📋 Panduan Halaman Kitchen - Sipaling Kopi
 
 ## 🔐 Kredensial Login Kitchen
