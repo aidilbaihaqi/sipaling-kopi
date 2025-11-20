@@ -10,8 +10,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReportController;
 // Namespace Kitchen
 use App\Http\Controllers\Kitchen\KitchenController;
-// Namespace Cashier
-use App\Http\Controllers\Cashier\CashierController;
 
 // --- 1. PUBLIC ROUTES ---
 Route::get('/', function () {
@@ -63,20 +61,4 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/reports', [ReportController::class, 'index'])
             ->name('admin.reports');
     });
-
-// Group Route Kasir
-Route::middleware(['auth'])->prefix('cashier')->name('cashier.')->group(function () {
-    
-    // Halaman Utama POS
-    Route::get('/', [CashierController::class, 'index'])->name('index');
-    
-    // Proses Checkout
-    Route::post('/checkout', [CashierController::class, 'store'])->name('store');
-    
-    // Cetak Struk
-    Route::get('/print/{id}', [CashierController::class, 'print'])->name('print');
-    
-    // Riwayat Transaksi
-    Route::get('/history', [CashierController::class, 'history'])->name('history');
-});
 });
