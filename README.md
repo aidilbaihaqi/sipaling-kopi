@@ -107,7 +107,7 @@ For detailed admin panel documentation, see [ADMIN_README.md](ADMIN_README.md)
 
 ## Kitchen Login Credentials
 
-After running the seeder, you can access the admin panel at `http://localhost:8000/login` with the following credentials:
+After running the seeder, you can access the kitchen panel at `http://localhost:8000/login` with the following credentials:
 
 - **Email**: `kitchen@sipalingkopi.com`
 - **Password**: `dapurGacor45`
