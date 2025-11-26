@@ -105,6 +105,15 @@ After running the seeder, you can access the admin panel at `http://localhost:80
 
 For detailed admin panel documentation, see [ADMIN_README.md](ADMIN_README.md)
 
+## Kitchen Login Credentials
+
+After running the seeder, you can access the admin panel at `http://localhost:8000/login` with the following credentials:
+
+- **Email**: `kitchen@sipalingkopi.com`
+- **Password**: `dapurGacor45`
+
+For detailed admin panel documentation, see [KITCHEN_README.md](KITCHEN_README.md)
+
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
