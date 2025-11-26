@@ -112,7 +112,7 @@ After running the seeder, you can access the admin panel at `http://localhost:80
 - **Email**: `kitchen@sipalingkopi.com`
 - **Password**: `dapurGacor45`
 
-For detailed admin panel documentation, see [KITCHEN_README.md](KITCHEN_README.md)
+For detailed kitchen panel documentation, see [KITCHEN_README.md](KITCHEN_README.md)
 
 ## License
 
